@@ -4,11 +4,22 @@ import matplotlib.pyplot as plt
 import matplotlib
 import folium
 from folium.plugins import MarkerCluster
+import os
 
 matplotlib.rc('font', family='Malgun Gothic')
 matplotlib.rcParams['axes.unicode_minus'] = False  # 마이너스 기호 깨짐 방지
 
-df = pd.read_csv("incheon_library.csv")
+# Resolve absolute paths based on this script's directory
+current_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.dirname(current_dir)
+
+csv_path = os.path.join(project_root, "data", "incheon_library.csv")
+pie_path = os.path.join(project_root, "charts", "libraries_by_region_pie.png")
+bar_path = os.path.join(project_root, "charts", "top_books_barh.png")
+scatter_path = os.path.join(project_root, "charts", "books_vs_seats_plot.png")
+map_path = os.path.join(project_root, "maps", "library_map.html")
+
+df = pd.read_csv(csv_path)
 
 df = df.dropna(subset=['도서관명'])
 df = df.iloc[:, :-1]
@@ -33,7 +44,7 @@ plt.pie(region_counts, labels=region_counts.index, autopct='%1.1f%%',
         startangle=140, colors=colors, wedgeprops={'edgecolor': 'white', 'linewidth': 1.5})
 plt.title('인천광역시 구/군별 도서관 분포 비율', fontsize=16, fontweight='bold', pad=20)
 plt.tight_layout()
-plt.savefig("libraries_by_region_pie.png", dpi=300)
+plt.savefig(pie_path, dpi=300)
 plt.show()
 plt.close()
 
@@ -55,11 +66,10 @@ plt.xlabel('자료수(도서)', fontsize=12)
 plt.grid(axis='x', linestyle='--', alpha=0.7)
 plt.xlim(0, max(top10_books['자료수(도서)']) * 1.15) # 레이블 표시를 위한 여유 공간
 plt.tight_layout()
-barh_output = 'top_books_barh.png'
-plt.savefig(barh_output, dpi=300)
+plt.savefig(bar_path, dpi=300)
 plt.show()
 plt.close()
-print(f"Saved: {barh_output}")
+print(f"Saved: {bar_path}")
 
 # ----------------- 3. Scatter Plot: 좌석수 대비 도서수 관계 -----------------
 # %%
@@ -79,10 +89,9 @@ plt.xlabel('열람좌석수', fontsize=12)
 plt.ylabel('자료수(도서)', fontsize=12)
 plt.grid(True, linestyle='--', alpha=0.5)
 plt.tight_layout()
-scatter_output = 'books_vs_seats_plot.png'
-plt.savefig(scatter_output, dpi=300)
+plt.savefig(scatter_path, dpi=300)
 plt.close()
-print(f"Saved: {scatter_output}")
+print(f"Saved: {scatter_path}")
 
 # ----------------- 4. Folium Map: 지도 시각화 -----------------
 # %%
@@ -122,9 +131,8 @@ for idx, row in map_df.iterrows():
         icon=folium.Icon(color='blue', icon='info-sign')
     ).add_to(marker_cluster)
 
-map_output = 'library_map.html'
-m.save(map_output)
-print(f"Saved: {map_output}")
+m.save(map_path)
+print(f"Saved: {map_path}")
 print("All visualization tasks completed successfully!")
 
 # %%

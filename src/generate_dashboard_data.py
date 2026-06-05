@@ -1,9 +1,17 @@
 import pandas as pd
 import json
 
+import os
+
 def generate_data():
+    # Set paths relative to script file
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    project_root = os.path.dirname(current_dir)
+    csv_path = os.path.join(project_root, "data", "incheon_library.csv")
+    js_path = os.path.join(project_root, "data", "dashboard_data.js")
+    
     # Read CSV
-    df = pd.read_csv("incheon_library.csv")
+    df = pd.read_csv(csv_path)
     
     # Clean data (matching the logic in visualize_libraries.py)
     df = df.dropna(subset=['도서관명'])
@@ -52,7 +60,7 @@ def generate_data():
     }
     
     # Write to dashboard_data.js
-    with open("dashboard_data.js", "w", encoding="utf-8") as f:
+    with open(js_path, "w", encoding="utf-8") as f:
         f.write("// Automatically generated from incheon_library.csv. Do not edit manually.\n")
         f.write(f"const LIBRARY_STATS = {json.dumps(stats, ensure_ascii=False, indent=2)};\n\n")
         f.write(f"const LIBRARY_DATA = {json.dumps(records, ensure_ascii=False, indent=2)};\n")

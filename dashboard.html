@@ -6,7 +6,7 @@
   <title>인천광역시 도서관 데이터 분석 대시보드</title>
   <link rel="stylesheet" href="dashboard.css">
   <!-- Load the pre-processed JSON data -->
-  <script src="dashboard_data.js"></script>
+  <script src="data/dashboard_data.js"></script>
 </head>
 <body>
 
@@ -113,7 +113,7 @@
         </div>
         <div class="map-container">
           <!-- Embed Folium Map -->
-          <iframe src="library_map.html"></iframe>
+          <iframe src="maps/library_map.html"></iframe>
         </div>
       </div>
 
@@ -128,22 +128,22 @@
         
         <div class="gallery-card">
           <h3>인천광역시 구/군별 도서관 분포 비율</h3>
-          <div class="img-container" onclick="openLightbox('libraries_by_region_pie.png')">
-            <img src="libraries_by_region_pie.png" alt="구군별 분포 비율">
+          <div class="img-container" onclick="openLightbox('charts/libraries_by_region_pie.png')">
+            <img src="charts/libraries_by_region_pie.png" alt="구군별 분포 비율">
           </div>
         </div>
 
         <div class="gallery-card">
           <h3>도서 보유량 상위 10개 도서관</h3>
-          <div class="img-container" onclick="openLightbox('top_books_barh.png')">
-            <img src="top_books_barh.png" alt="상위 10개 도서관">
+          <div class="img-container" onclick="openLightbox('charts/top_books_barh.png')">
+            <img src="charts/top_books_barh.png" alt="상위 10개 도서관">
           </div>
         </div>
 
         <div class="gallery-card">
           <h3>도서관 열람좌석수 대비 도서 보유량</h3>
-          <div class="img-container" onclick="openLightbox('books_vs_seats_plot.png')">
-            <img src="books_vs_seats_plot.png" alt="좌석 대비 도서량">
+          <div class="img-container" onclick="openLightbox('charts/books_vs_seats_plot.png')">
+            <img src="charts/books_vs_seats_plot.png" alt="좌석 대비 도서량">
           </div>
         </div>
 
