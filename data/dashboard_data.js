@@ -1,4 +1,3 @@
-// Automatically generated from incheon_library.csv. Do not edit manually.
 const LIBRARY_STATS = {
   "totalLibraries": 65,
   "totalBooks": 5576784,
