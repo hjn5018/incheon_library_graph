@@ -64,7 +64,7 @@ for bar in bars:
 plt.title('인천광역시 도서 보유량 상위 10개 도서관', fontsize=16, fontweight='bold', pad=20)
 plt.xlabel('자료수(도서)', fontsize=12)
 plt.grid(axis='x', linestyle='--', alpha=0.7)
-plt.xlim(0, max(top10_books['자료수(도서)']) * 1.15) # 레이블 표시를 위한 여유 공간
+plt.xlim(0, max(top10_books['자료수(도서)']) * 1.15)
 plt.tight_layout()
 plt.savefig(bar_path, dpi=300)
 plt.close()
@@ -79,7 +79,6 @@ plt.figure(figsize=(10, 7))
 
 plt.scatter(df['열람좌석수'], df['자료수(도서)'], alpha=0.7, edgecolors='none', s=80, c='#e74c3c')
 
-# 주요 도서관 이름 강조 표시 (자료수가 20만권 이상이거나 좌석수가 500석 이상인 경우)
 for idx, row in df.iterrows():
     if row['자료수(도서)'] >= 200000 or row['열람좌석수'] >= 500:
         plt.text(row['열람좌석수'] + 15, row['자료수(도서)'], row['도서관명'], 
