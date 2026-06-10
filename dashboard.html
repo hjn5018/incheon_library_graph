@@ -5,26 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>인천광역시 도서관 데이터 분석 대시보드</title>
   <link rel="stylesheet" href="dashboard.css">
-  <!-- Load the pre-processed JSON data -->
   <script src="data/dashboard_data.js"></script>
 </head>
 <body>
 
   <div class="dashboard-container">
-    
-    <!-- Header -->
     <header>
       <div class="brand-info">
         <h1>인천광역시 도서관 분석 대시보드</h1>
         <p>인천 내 공공도서관의 인프라 및 도서 보유 현황 시각화</p>
       </div>
       <button class="theme-toggle-btn" id="theme-toggle" onclick="toggleTheme()">
-        <!-- Sun Icon (hidden in dark mode) -->
         <svg id="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
           <circle cx="12" cy="12" r="4"></circle>
           <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
         </svg>
-        <!-- Moon Icon (shown in dark mode) -->
         <svg id="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
         </svg>
@@ -32,10 +27,7 @@
       </button>
     </header>
 
-    <!-- KPI Summary Row -->
     <div class="kpi-container">
-      
-      <!-- Total Libraries -->
       <div class="kpi-card blue-theme">
         <div class="kpi-icon">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -50,7 +42,6 @@
         </div>
       </div>
 
-      <!-- Total Books -->
       <div class="kpi-card green-theme">
         <div class="kpi-icon">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -65,7 +56,6 @@
         </div>
       </div>
 
-      <!-- Total Seats -->
       <div class="kpi-card info-theme">
         <div class="kpi-icon">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -80,7 +70,6 @@
         </div>
       </div>
 
-      <!-- Top Library -->
       <div class="kpi-card warn-theme">
         <div class="kpi-icon">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -93,13 +82,9 @@
           <span class="kpi-subtext" id="kpi-top-lib-val" style="color: var(--warning-color); font-weight: 600;">-</span>
         </div>
       </div>
-
     </div>
 
-    <!-- Main Visualizations Grid -->
     <div class="main-grid">
-      
-      <!-- Interactive Map Panel -->
       <div class="card-panel">
         <div class="panel-header">
           <h2>
@@ -112,16 +97,11 @@
           <span style="font-size: 0.8rem; color: var(--text-muted);">마커를 클릭해 정보를 확인하세요</span>
         </div>
         <div class="map-container">
-          <!-- Embed Folium Map -->
           <iframe src="maps/library_map.html"></iframe>
         </div>
       </div>
-
-
-
     </div>
 
-    <!-- Comparison Gallery Section -->
     <div class="gallery-section">
       <h2 class="gallery-title">전체 시각화 그래프 갤러리</h2>
       <div class="gallery-grid">
@@ -150,9 +130,7 @@
       </div>
     </div>
 
-    <!-- Data Explorer Table -->
     <div class="card-panel explorer-panel">
-      
       <div class="panel-header">
         <h2>
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -164,7 +142,6 @@
         <span style="font-size: 0.85rem; text-align: right; color: var(--text-muted);" id="row-count">검색된 도서관: -개</span>
       </div>
 
-      <!-- Search & Filters -->
       <div class="filter-bar">
         <div class="search-input-wrapper">
           <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -183,7 +160,6 @@
         </select>
       </div>
 
-      <!-- Responsive Table Container -->
       <div class="table-responsive">
         <table>
           <thead>
@@ -205,14 +181,12 @@
 
     </div>
 
-    <!-- Footer -->
     <footer>
       <p>&copy; 2026 인천광역시 도서관 데이터 분석 대시보드. All Rights Reserved.</p>
     </footer>
 
   </div>
 
-  <!-- Image Lightbox Modal -->
   <div class="modal" id="image-modal" onclick="closeLightbox()">
     <div class="modal-content" onclick="event.stopPropagation()">
       <button class="modal-close" onclick="closeLightbox()">&times;</button>
@@ -220,14 +194,11 @@
     </div>
   </div>
 
-  <!-- Frontend Logic -->
   <script>
-    // State management
     let tableData = [...LIBRARY_DATA];
     let sortColumn = '자료수(도서)';
-    let sortDirection = 'desc'; // default sort descending by book count
+    let sortDirection = 'desc';
 
-    // Theme toggler
     function toggleTheme() {
       const currentTheme = document.documentElement.getAttribute('data-theme');
       const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
@@ -252,33 +223,29 @@
       }
     }
 
-    // Set initial theme on load
     const savedTheme = localStorage.getItem('theme') || 'dark';
     document.documentElement.setAttribute('data-theme', savedTheme);
     updateThemeButton(savedTheme);
 
-    // Lightbox modal functions
     function openLightbox(imgSrc) {
       const modal = document.getElementById('image-modal');
       const modalImg = document.getElementById('modal-img');
       modalImg.src = imgSrc;
       modal.classList.add('active');
-      document.body.style.overflow = 'hidden'; // prevent scrolling behind modal
+      document.body.style.overflow = 'hidden';
     }
 
     function closeLightbox() {
       document.getElementById('image-modal').classList.remove('active');
-      document.body.style.overflow = ''; // restore scrolling
+      document.body.style.overflow = ''; 
     }
 
-    // Escape key closes modal
     document.addEventListener('keydown', function(event) {
       if (event.key === 'Escape') {
         closeLightbox();
       }
     });
 
-    // Populate KPIs
     function initKPIs() {
       document.getElementById('kpi-total-libs').innerText = `${LIBRARY_STATS.totalLibraries.toLocaleString()}개`;
       document.getElementById('kpi-total-books').innerText = `${LIBRARY_STATS.totalBooks.toLocaleString()}권`;
@@ -287,7 +254,6 @@
       document.getElementById('kpi-top-lib-val').innerText = `${LIBRARY_STATS.topLibraryBooks.toLocaleString()}권 보유`;
     }
 
-    // Populate Filters
     function initFilters() {
       const regionSelect = document.getElementById('filter-region');
       LIBRARY_STATS.regions.forEach(r => {
@@ -306,7 +272,6 @@
       });
     }
 
-    // Render Table Data
     function renderTable() {
       const tbody = document.getElementById('library-table-body');
       tbody.innerHTML = '';
@@ -327,18 +292,16 @@
         tbody.appendChild(tr);
       });
 
-      // Update count indicator
       document.getElementById('row-count').innerText = `검색된 도서관: ${tableData.length}개`;
       updateSortIndicators();
     }
 
-    // Sorting functionality
     function handleSort(column) {
       if (sortColumn === column) {
         sortDirection = sortDirection === 'asc' ? 'desc' : 'asc';
       } else {
         sortColumn = column;
-        sortDirection = 'desc'; // default descending for new columns
+        sortDirection = 'desc'; 
       }
 
       sortData();
@@ -350,7 +313,6 @@
         let valA = a[sortColumn];
         let valB = b[sortColumn];
 
-        // Handle string vs number comparison
         if (typeof valA === 'string') {
           return sortDirection === 'asc' 
             ? valA.localeCompare(valB, 'ko') 
@@ -362,35 +324,33 @@
     }
 
     function updateSortIndicators() {
-      // Clear indicators
       const columns = ['도서관명', '시군구명', '도서관유형', '열람좌석수', '자료수(도서)'];
       columns.forEach(col => {
         document.getElementById(`sort-${col}`).innerHTML = '';
       });
 
-      // Set current indicator
       const indicator = sortDirection === 'asc' ? '▲' : '▼';
       const el = document.getElementById(`sort-${sortColumn}`);
       if (el) el.innerHTML = indicator;
     }
 
-    // Search and Filter updates
     function handleFilterChange() {
       const query = document.getElementById('search-query').value.toLowerCase().trim();
       const region = document.getElementById('filter-region').value;
       const type = document.getElementById('filter-type').value;
 
       tableData = LIBRARY_DATA.filter(row => {
-        // Text query match (library name, address, or phone)
-        const matchQuery = !query || 
-          row.도서관명.toLowerCase().includes(query) ||
-          row.소재지도로명주소.toLowerCase().includes(query) ||
-          row.도서관전화번호.toLowerCase().includes(query);
+        const name = row.도서관명 || '';
+        const address = row.소재지도로명주소 || '';
+        const phone = row.도서관전화번호 || '';
 
-        // Region dropdown match
+        const matchQuery = !query || 
+          (typeof name === 'string' && name.toLowerCase().includes(query)) ||
+          (typeof address === 'string' && address.toLowerCase().includes(query)) ||
+          (typeof phone === 'string' && phone.toLowerCase().includes(query));
+
         const matchRegion = !region || row.시군구명 === region;
 
-        // Library type match
         const matchType = !type || row.도서관유형 === type;
 
         return matchQuery && matchRegion && matchType;
@@ -400,11 +360,10 @@
       renderTable();
     }
 
-    // Initialize Dashboard
     window.onload = function() {
       initKPIs();
       initFilters();
-      sortData(); // initial sort by book count desc
+      sortData();
       renderTable();
     };
   </script>
